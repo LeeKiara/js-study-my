@@ -89,7 +89,6 @@ return template;
 
     // FileReader 객체 생성
     const reader = new FileReader();
-
     // FileReader 로드 완료 시 호출되는 이벤트 핸들러
     reader.addEventListener("load", async (e) => {
 
