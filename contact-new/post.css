@@ -1,0 +1,29 @@
+/* body 영역을 flexbox로 지정 */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  /* background-color: #f5f5f5; */
+}
+
+input[type="text"],
+textarea {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus
+{
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+textarea:focus
+{
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
