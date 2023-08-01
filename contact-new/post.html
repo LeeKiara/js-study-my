@@ -10,6 +10,13 @@
 
 <body>
 
+  <!-- 
+    <script src="../sidebar.js"></script> 
+  <main>
+  </main>
+  <script src="./post.js"></script> 
+-->
+
   <form action="">
     <div>
       <input type="text" placeholder="제목" />
@@ -25,13 +32,29 @@
     </div>
 
     <button>게시</button>
-    <br>
-    <br>
-    삭제할 번호 : <input type="text">
-    <button>삭제</button>
-    <br>
-    <br>
   </form>
+
+  <!-- Modal background layer(position: fixed) -->
+  <div id="modify-layer" hidden>
+    <!-- 컨텐츠 감싸는 영역 (position: relative)-->
+    <div>
+      <!-- 컨텐츠 컨테이너 영역 start (position: absolute;)-->
+      <div id="modify-box">
+        <h3>* NO:</h3>
+        <form> <!-- display: flex; flex-direction: column;-->
+          <input type="text" placeholder="제목" />
+          <textarea cols="30" rows="10" placeholder="content"></textarea>
+          <div> <!-- display: flex; -->
+            <button>확인</button> <!-- flex: 1; -->
+            <button>취소</button>
+          </div>
+        </form>
+      </div>
+      <!-- 컨텐츠 컨테이너 영역 end -->
+    </div>
+    <!-- 컨텐츠 감싸는 영역 end -->
+  </div>
+  <!-- Modal background layer end -->
 
   <script src="./post.js"></script>
 </body>

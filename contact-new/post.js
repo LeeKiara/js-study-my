@@ -1,3 +1,23 @@
+function cardTemplate(item) {
+  const template = /*html*/ `
+  <div class="container">
+    <div data-no='${item.no}'>
+      <em>${item.creatorName}</em>
+      <hr>
+      <h3>${item.title}</h3>
+      <p>${item.content}</p>
+      ${item.image ? `<img width="auto" height="100px" src="${item.image}" alt="${item.title}">` : ""}
+      <hr>
+      <small>${new Date(item.createdTime).toLocaleString()}</small>      
+      <div><button class="btn-modify" >수정</button>
+      <button class="btn-remove" data-no='${item.no}'>삭제</button></div>
+    </div>
+  </div>
+  `;
+  
+  return template;
+}
+
 // 서버에서 데이터 조회후 화면에 출력
 // JSON데이터로 tr 목록을 만드는 것
 
@@ -44,22 +64,6 @@
 
 })();
 
-function cardTemplate(item) {
-  const template = /*html*/ `
-  <div data-no='${item.no}'>
-    <em>${item.creatorName}</em>
-    <hr>
-    <h3>${item.title}</h3>
-    <p>${item.content}</p>
-    <div><img width="auto" height="100px" src="${item.image}" alt="${item.title}"></div>
-    <hr>
-    <small>${new Date(item.createdTime).toLocaleString()}</small>
-  </div>
-  `;
-
-return template;
-
-}
 
 /*
 --------------------
@@ -89,6 +93,7 @@ return template;
 
     // FileReader 객체 생성
     const reader = new FileReader();
+
     // FileReader 로드 완료 시 호출되는 이벤트 핸들러
     reader.addEventListener("load", async (e) => {
 
@@ -140,61 +145,96 @@ return template;
 
 })();
 
-// 삭제폼
-(() => {
 
-  const form = document.forms[0];
+/*
+--------------------
+ 삭제 기능(이벤트 위임)
+--------------------
+*/
+(()=>{
+  document.body.addEventListener("click", async (e) => {
+    /** @type {HTMLButtonElement}*/
 
-  // 삭제 버튼
-  const buttons = form.querySelectorAll("button"); 
-  const del = buttons[1];
+    // e.target : 실제 이벤트가 발생한 요소
+    if(e.target.classList.contains("btn-remove")) {
+      // e.preventDefault();
 
-  // 삭제 대상 no
-  const inputs = form.querySelectorAll("input"); 
-  const no = inputs[2];
+      const removeBtn = e.target;
+      const divElement = removeBtn.parentElement.parentElement;
+      const dataNoValue = removeBtn.getAttribute('data-no');
 
-  del.addEventListener("click", async (e) => {
-    e.preventDefault();
+      alert(dataNoValue)
 
-  await fetch(
-    `http://localhost:8080/posts/${no.value}`, 
-    {
-      method: "DELETE",
+      await fetch(
+        `http://localhost:8080/posts/${dataNoValue}`, 
+        {
+          method: "DELETE",
+        }
+      );
+      
+      removeBtn.parentElement.parentElement.remove();  
     }
-  );
+    
+    });
+  })();
 
-    const div = document.querySelector(
-      `div[data-no="${no.value}"]`
-    );
+  // 수정처리(이벤트 위임)
+  (() => {
 
-    if (!div) {
-      alert("해당 자료가 없습니다.");
-      return;
-    }
+    // tbody onclick eventhandler add
+    document.body.addEventListener("click", (e) => {
 
-    div.remove();
+      // click the update-button
+      if(e.target.classList.contains("btn-modify")) {
+        // jsdoc type 힌트를 넣어줌
+        /** @type {HTMLButtonElement} */
+        const modifyBtn = e.target;
 
-    form.reset();
+        // button -> div -> div
+        const div = modifyBtn.parentElement.parentElement;
 
-    alert("삭제 되었습니다.");   
+        // div의 모든 값 가져오기
+        const modifyNo = div.dataset.no;
+        const title = div.querySelector("h3");
+        const content = div.querySelector("p");
+        console.log(modifyNo);
+        console.log(title);
+        console.log(content);
+
+        // 모달 레이어 띄우기
+        /** @type {HTMLDivElement} */
+        const layer = document.querySelector("#modify-layer");
+        layer.hidden = false;
+
+        const displayNo = document
+                          .querySelector("#modify-box")
+                          .querySelector("h3");
+
+         // 모달 내부의 폼에 선택값을 채워 넣음
+         const form = document.forms[1];
+         const inputTitle = form.querySelector("input");
+         const inputContent = form.querySelector("textarea");
+
+         displayNo.innerHTML = "*NO : "+modifyNo;
+         inputTitle.value = title.innerHTML;
+         inputContent.value = content.innerHTML;
+
+         // 확인/취소 버튼의 이벤트 핸들러 추가
+         const buttons = layer.querySelectorAll("button");
+         // 수정 버튼
+         buttons[0].addEventListener("click", async (e) => {
+          e.preventDefault();
+
+          const title = form.querySelector("input").value;
+          const content = form.querySelector("textarea").value;
+
+         });
+
+         // 취소 버튼
 
 
-  });
+      }
 
-})();
+    });
 
-
-function createRow(no, title, content, createdTime, creatorName) {
-  // 1. 요소 생성
-  const tr = document.createElement("tr");
-
-  // 2. 요소의 속성 설정
-  tr.dataset.no = no;
-  tr.innerHTML = `
-  <td>${no}</td>
-  <td>${title}</td>
-  <td>${content}</td>
-  <td>${createdTime}</td>
-  <td>${creatorName}</td>`;
-  return tr;
-}
+  })();
