@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./post.css">
+</head>
+
+<body>
+  <script src="/sidebar.js"></script>
+
+  <main>
+    <form action=""> <!-- forms[0] -->
+      <div>
+        <input type="text" placeholder="제목" />
+      </div>
+      <div>
+        <textarea cols="30" rows="10" placeholder="content"></textarea>
+      </div>
+      <div>
+        <!-- <textarea cols="100" rows="15" placeholder="Add To Image"></textarea> -->
+        <!-- MIME type -->
+        <!-- application/json, image/jpeg, image/png, text/html -->
+        <input type="file" placeholder="image" accept="image/*" />
+      </div>
+      <button>게시</button>
+    </form>
+
+    <hr />
+    검색: <br />
+    <form action=""> <!-- forms[1] -->
+      <input placeholder="제목, 내용..." />
+      <button>검색</button>
+      <button>초기화</button>
+      &nbsp;&nbsp;&nbsp;
+      <button id="btnPrev">이전</button>
+      <button id="btnNext">다음</button>
+    </form>
+
+    <!-- Modal background layer(position: fixed) -->
+    <div id="modify-layer" hidden>
+      <!-- 컨텐츠 감싸는 영역 (position: relative)-->
+      <div>
+        <!-- 컨텐츠 컨테이너 영역 start (position: absolute;)-->
+        <div id="modify-box">
+          <h3>* NO:</h3>
+          <form> <!-- display: flex; flex-direction: column;-->
+            <input type="text" placeholder="제목" />
+            <textarea cols="30" rows="10" placeholder="content"></textarea>
+            <div> <!-- display: flex; -->
+              <button>확인</button> <!-- flex: 1; -->
+              <button>취소</button>
+            </div>
+          </form>
+        </div>
+        <!-- 컨텐츠 컨테이너 영역 end -->
+      </div>
+      <!-- 컨텐츠 감싸는 영역 end -->
+    </div>
+    <!-- Modal background layer end -->
+  </main>
+  <script src="./post.js"></script>
+
+</body>
+
+</html>
