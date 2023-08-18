@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// 1. **문제:** 다음 객체를 깊은 복사(deep copy)하는 코드를 작성하세요.
+			const obj = {
+				name: "John",
+				age: 30,
+				skills: {
+					coding: "Javascript",
+					sports: "Football",
+				},
+			};
+
+			// ---  JSON.stringify : 객체를 문자열로 변환
+			// ---  JSON.parse -> 문자열을 객체로 변환
+			const deepCopied1 = JSON.parse(JSON.stringify(obj));
+			console.log(deepCopied1);
+
+			// 스프레드 연산자(...)를 사용
+			const deepCopied2 = { ...obj };
+			console.log(deepCopied2);
+
+			deepCopied2.job = "student";
+			console.log("original obj");
+			console.log(obj);
+
+			// 2. **문제:** 아래 객체를 얕은 복사(shallow copy)하는 코드를 작성하세요.
+			let person = {
+				firstName: "John",
+				lastName: "Doe",
+			};
+
+			let shallowCopied = person;
+
+			console.log(shallowCopied);
+			shallowCopied.surname = "kkk";
+
+			console.log(person);
+
+			// 3. **문제:** 다음의 객체 배열을 깊은 복사하는 코드를 작성하세요.
+			let students = [
+				{ name: "John", age: 21 },
+				{ name: "Anna", age: 22 },
+				{ name: "Max", age: 23 },
+			];
+
+			const deepCopyStudent = JSON.parse(JSON.stringify(students));
+
+			console.log("deepCopyStudent");
+			console.log(deepCopyStudent);
+
+			deepCopyStudent.push({ name: "Lily", age: 30 });
+
+			console.log("deepCopyStudent add....");
+			console.log(deepCopyStudent);
+
+			console.log("check original array changed");
+			console.log(students); // not change
+
+			// 4. **문제:** 다음의 함수 `copyObj()`를 수정하여 객체의 깊은 복사를 수행하도록 만드세요.
+			function copyObj(obj) {
+				return JSON.parse(JSON.stringify(obj));
+			}
+
+			// 5. **문제:** Object.assign을 사용하여 아래 객체를 얕은 복사하는 코드를 작성하세요.
+			let animal = {
+				type: "Dog",
+				name: "Milo",
+			};
+
+			const copiedAnimal = Object.assign({}, animal);
+
+			console.log("Object.assign을 사용하여 shallow copy");
+			console.log(copiedAnimal); // {type: 'Dog', name: 'Milo'}
+		</script>
+	</body>
+</html>

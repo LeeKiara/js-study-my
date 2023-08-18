@@ -1,0 +1,56 @@
+<!-- <summary>성별과 취미 선택 설문조사 만들기 </summary> -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gender and Hobby Survey</title>
+	</head>
+	<body>
+		<form id="survey-form">
+			<p>What's your gender?</p>
+			<label><input type="radio" name="gender" value="Male" /> Male</label
+			><br />
+			<label><input type="radio" name="gender" value="Female" /> Female</label
+			><br />
+			<p>What's your hobby?</p>
+			<label
+				><input type="checkbox" name="hobby" value="Reading" /> Reading</label
+			><br />
+			<label><input type="checkbox" name="hobby" value="Sports" /> Sports</label
+			><br />
+			<label
+				><input type="checkbox" name="hobby" value="Listening to music" />
+				Listening to music</label
+			><br />
+			<label
+				><input type="checkbox" name="hobby" value="Watching movies" /> Watching
+				movies</label
+			><br />
+			<button type="button" onclick="showSelectedGenderAndHobbies()">
+				Submit
+			</button>
+		</form>
+		<script>
+			function showSelectedGenderAndHobbies() {
+				var selectedGender = document.querySelector(
+					'input[name="gender"]:checked'
+				).value;
+
+				var selectedHobbies = [];
+				var checkboxes = document.querySelectorAll(
+					'input[name="hobby"]:checked'
+				);
+				for (var i = 0; i < checkboxes.length; i++) {
+					selectedHobbies.push(checkboxes[i].value);
+				}
+
+				alert(
+					"You are a " +
+						selectedGender +
+						" and your hobbies are: " +
+						selectedHobbies.join(", ")
+				);
+			}
+		</script>
+	</body>
+</html>

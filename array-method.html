@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// 1. **문제:**
+			// 주어진 배열 ["Red", "Blue", "Green", "Yellow", "Black"] 에서
+			// "Green"과 "Yellow"을 제거한 새 배열을 반환하는 함수를 만드세요.
+
+			const color = ["Red", "Blue", "Green", "Yellow", "Black"];
+
+			console.log("origin");
+			console.log(color); //  ['Red', 'Blue', 'Green', 'Yellow', 'Black']
+
+			// splice 메서드는 원본 배열을 변경한다.
+			const removedcolor2 = color.splice(2, 2);
+			console.log("삭제된 배열(splice 이용) >>>>>");
+			console.log(removedcolor2); // ['Green', 'Yellow']
+
+			console.log("");
+			const newColor = removeColors(color);
+			console.log("삭제하고 남은 배열(splice function 이용) >>>>>");
+			console.log(newColor);
+
+			console.log("원본 배열이 변경되었는지 확인 ----------");
+			console.log(color); // ['Red', 'Blue', 'Black']
+
+			// 삭제 후 변경된 원본 배열을 리턴한다.
+			function removeColors(colors) {
+				const index = colors.indexOf("Green");
+				if (index > -1) {
+					colors.splice(index, 2);
+				}
+				return colors;
+			}
+		</script>
+	</body>
+</html>
