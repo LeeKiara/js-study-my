@@ -1,0 +1,40 @@
+
+table {
+  border-collapse: collapse;
+  width: 650px;
+  margin-bottom: 150px;
+}
+
+th {
+  text-align: center;  
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  background-color:  #ddd;
+  height: 30px;
+  line-height: 30px;
+}
+
+td {
+  text-align: center;
+  border-bottom: 1px solid gray;
+  height: 30px;
+  line-height: 30px;
+}
+
+/* tbody 태그 안의 tr 중 홀수번째만 */
+tbody>tr:nth-of-type(2n-1) {
+  /* background-color: #fff8e8; */
+}
+
+tbody>tr:hover {
+  /* background-color: lightgoldenrodyellow; */
+  font-weight: bold;
+}
+
+.div-desc {
+  border-radius: 6px; /* 테두리 둥글기 설정 */
+  border: 1px solid gainsboro; 
+  height: 60px;
+  margin-top: 10px;
+  padding: 10px 5px;
+}

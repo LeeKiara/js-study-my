@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>iPMS</title>
+		<link rel="stylesheet" href="/common/reset.css" />
+		<link rel="stylesheet" href="/common/layout.css" />
+		<link rel="stylesheet" href="/project/project-create.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+
+	<body>
+		<!-- 최상단 탑 메뉴 -->
+		<script src="/common/top-menu.js"></script>
+
+		<main>
+			<div class="main-left-layer"></div>
+
+			<div class="main-center-layer">
+				<div class="top-content">
+					<div><h1>프로젝트 정보 등록</h1></div>
+				</div>
+				<div class="inner-content">
+					<article class="left-content">
+						<div class="left-box">
+							<form action="">
+								<!-- forms[0] -->
+								<div>
+									<label>프로젝트명</label>
+									<input type="text" placeholder="제목을 입력하세요." />
+								</div>
+								<div>
+									<label>설명</label>
+									<textarea
+										cols="30"
+										rows="10"
+										placeholder="프로젝트에 관한 설명 입력(옵션)"
+									></textarea>
+								</div>
+								<div>
+									<label>시작일</label>
+									<div>
+										<input type="date" placeholder="시작일" />
+										&nbsp;&nbsp;~&nbsp;&nbsp; <label>종료일</label
+										><input type="date" placeholder="종료일" />
+									</div>
+								</div>
+								<div>
+									<label>대표이미지</label
+									><input
+										type="file"
+										placeholder="대표이미지"
+										accept="image/*"
+									/>
+									<div id="project-image"></div>
+								</div>
+							</form>
+
+							<div class="button-layer">
+								<button>등록</button>
+							</div>
+						</div>
+					</article>
+
+					<aside class="right-content">
+						<script src="/common/right-menu.js"></script>
+					</aside>
+				</div>
+			</div>
+
+			<div class="main-right-layer"></div>
+		</main>
+
+		<script src="/project/project-create.js"></script>
+		<script src="/common/footer.js"></script>
+	</body>
+</html>

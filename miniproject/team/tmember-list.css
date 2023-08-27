@@ -1,0 +1,37 @@
+table {
+  border-collapse: collapse;
+  width: 550px;
+  margin-bottom: 150px;
+}
+
+th {
+  text-align: center;  
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  background-color:  #ddd;
+  height: 30px;
+  line-height: 30px;
+}
+
+td {
+  text-align: center;
+  border-bottom: 1px solid gray;
+  height: 30px;
+  line-height: 30px;
+}
+
+/* tbody 태그 안의 tr 중 홀수번째만 */
+tbody>tr:nth-of-type(2n-1) {
+  /* background-color: #fff8e8; */
+}
+
+tbody>tr:hover {
+  /* background-color: lightgoldenrodyellow; */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input[name="title"] {
+  background-color: white;
+  border: 0px solid white;
+}
